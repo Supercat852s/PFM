@@ -1,13 +1,15 @@
 import os
 
 # Prints the introduction.
-print("Welcome to Python File Manager 0.1!")
+print("Welcome to Python File Manager 0.1.1!")
 print("Type 'help' for help.")
+print("Do 'p' for patch notes.")
 
 # Defines the help command.
 def doHelp():
     print("Welcome to help command 0.1!")
     print("Available commands:")
+    print("[p] List new patch notes.")
     print("[ls] List the contents of the current directory.")
     print("[mk] Create a file.")
     print("[mkdir] Create a directory.")
@@ -15,6 +17,14 @@ def doHelp():
     print("[rmdire] Remove a empty directory.")
     print("[exit] Exit the program.")
     doStartup()
+
+# Defines the p command.
+def doP():
+    print("Welcome to PFM patch notes!")
+    print("Version: 0.1.1")
+    print("V0.1.1 patch notes:")
+    print("-The 'p'(patch notes) command was added.")
+    print("-Added a new phrase in the command 'rmdire'.")
 
 # Defines the ls command.
 def doLs1():
@@ -65,12 +75,15 @@ def doRmdirE():
     print("What empty directory you want to remove?")
     i = input(">")
     os.rmdir(i)
+    print("Directory removed.")
     doStartup()
 
 # Defines the startup funcion.
 def doStartup():
     i = input(">")
 
+    if i == "p":
+        doP()
     if i == "ls":
         doLs2()
     if i == "mk":
