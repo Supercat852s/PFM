@@ -1,7 +1,7 @@
 import os
 
 # Prints the introduction.
-print("Welcome to Python File Manager 0.1.1!")
+print("Welcome to Python File Manager 0.1.1!!")
 print("Type 'help' for help.")
 print("Do 'p' for patch notes.")
 
