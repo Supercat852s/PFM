@@ -1,7 +1,7 @@
 import os
 
 # Prints the introduction.
-print("Welcome to Python File Manager 0.2!!")
+print("Welcome to Python File Manager 0.3!!")
 print("Type 'help' for help.")
 print("Do 'p' for patch notes.")
 
@@ -11,6 +11,9 @@ def doHelp():
     print("Available commands:")
     print("[p] List new patch notes.")
     print("[ls] List the contents of the current directory.")
+    print("[ta] Add text to an existing text file.")
+    print("[tw] Overwrite an existing text file.")
+    print("[cat] Shows the contents of a text file.")
     print("[mk] Create a file.")
     print("[mkdir] Create a directory.")
     print("[rm] Remove a file.")
@@ -21,16 +24,48 @@ def doHelp():
 # Defines the p command.
 def doP():
     print("Welcome to PFM patch notes!")
-    print("Version: 0.2")
-    print("V0.2 patch notes:")
-    print("-The 'ls' command's graphics were revamped.")
-    print("-A part of the code was refactored.")
+    print("Version: 0.3")
+    print("V0.3 patch notes:")
+    print("-Added the 'ta' command.")
+    print("-The 'tw' command was added.")
+    print("-A new cat is on your keyboard!('cat command added)")
 
 # Defines the ls command.
 def doLs1():
     for file in os.listdir():
         if os.path.isfile(os.path.join(file)):
             yield file
+
+# Defines the ta command.
+def doTa():
+    print("Please select file to append:")
+    i = input(">")
+    print("Please write what to append:")
+    i = input(">")
+    with open(i, "a") as a:
+        a.write(i)
+    doStartup()
+
+# Defnes the tw command.
+def doTw():
+    print("Please select file:")
+    i = input(">")
+    with open(i, "w") as w:
+        print("What do you want to overwrite?")
+        i = input(">")
+        w.write(i)
+        doStartup()
+
+# defines the cat command.
+def doCat():
+    print("What file do you want to read?")
+    i = input(">")
+    with open(i, "r") as r:
+        print("How many characters do you want to read?")
+        i = input(">")
+        r = r.read(int(i))
+        print(r)
+        doStartup()
 
 # Runs the ls command when called. 
 def doLs2():
@@ -88,6 +123,12 @@ def doStartup():
             doP()
         case "ls":
             doLs2()
+        case "ta":
+            doTa()
+        case "tw":
+            doTw()
+        case "cat":
+            doCat()
         case "mk":
             doMk()
         case "mkdir":
