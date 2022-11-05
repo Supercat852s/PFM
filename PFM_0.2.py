@@ -1,13 +1,13 @@
 import os
 
 # Prints the introduction.
-print("Welcome to Python File Manager 0.1.1!!")
+print("Welcome to Python File Manager 0.2!!")
 print("Type 'help' for help.")
 print("Do 'p' for patch notes.")
 
 # Defines the help command.
 def doHelp():
-    print("Welcome to help command 0.1!")
+    print("Welcome to help command!")
     print("Available commands:")
     print("[p] List new patch notes.")
     print("[ls] List the contents of the current directory.")
@@ -21,10 +21,10 @@ def doHelp():
 # Defines the p command.
 def doP():
     print("Welcome to PFM patch notes!")
-    print("Version: 0.1.1")
-    print("V0.1.1 patch notes:")
-    print("-The 'p'(patch notes) command was added.")
-    print("-Added a new phrase in the command 'rmdire'.")
+    print("Version: 0.2")
+    print("V0.2 patch notes:")
+    print("-The 'ls' command's graphics were revamped.")
+    print("-A part of the code was refactored.")
 
 # Defines the ls command.
 def doLs1():
@@ -34,8 +34,9 @@ def doLs1():
 
 # Runs the ls command when called. 
 def doLs2():
+    print("---------Name---------")
     for file in doLs1():
-        print(file)
+        print("|--"+file+"--|")
     doStartup()    
 
 # Defines the mk command.
@@ -71,7 +72,7 @@ def doRm():
     doStartup()
 
 # Defines the rmdir funcion.
-def doRmdirE():
+def doRmdire():
     print("What empty directory you want to remove?")
     i = input(">")
     os.rmdir(i)
@@ -82,23 +83,24 @@ def doRmdirE():
 def doStartup():
     i = input(">")
 
-    if i == "p":
-        doP()
-    if i == "ls":
-        doLs2()
-    if i == "mk":
-        doMk()
-    if i == "mkdir":
-        doMkdir()
-    if i == "rm":
-        doRm()
-    if i == "rmdire":
-        doRmdirE()
-    if i == "help":
-        doHelp()
-    if i == "exit":
-        print("Thank you for using PFM!")
-        exit() 
+    match i:
+        case "p":
+            doP()
+        case "ls":
+            doLs2()
+        case "mk":
+            doMk()
+        case "mkdir":
+            doMkdir()
+        case "rm":
+            doRm()
+        case "rmdire":
+            doRmdire()
+        case "help":
+            doHelp()
+        case "exit":
+            print("Thank you for using PFM!")
+            exit()
     doStartup()
 
 # Starts the program.
