@@ -71,7 +71,7 @@ def doTw():
 
 # defines the cat command.
 def doCat():
-    print("What file do you want to read?(Also write it's path!)")
+    print("What file do you want to read?(Also write its path!)")
     i = input(">")
     with open(i, "r") as r:
         print("How many characters do you want to read?")
@@ -83,7 +83,7 @@ def doCat():
 
 # Defines the mk command.
 def doMk():
-    print("Please enter the name of the file and it's path:")
+    print("Please enter the name of the file and its path:")
     i = input(">")
     with open(str(i), "x"):
         print("Operation succesful.")
