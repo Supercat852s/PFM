@@ -1,7 +1,7 @@
 import os
 
 # Prints the introduction.
-print("Welcome to Python File Manager 0.3!!")
+print("Welcome to Python File Manager 0.4!!")
 print("Type 'help' for help.")
 print("Do 'p' for patch notes.")
 
@@ -24,11 +24,11 @@ def doHelp():
 # Defines the p command.
 def doP():
     print("Welcome to PFM patch notes!")
-    print("Version: 0.3")
-    print("V0.3 patch notes:")
-    print("-Added the 'ta' command.")
-    print("-The 'tw' command was added.")
-    print("-A new cat is on your keyboard!('cat command added)")
+    print("Version: 0.4")
+    print("0.4 patch notes:")
+    print("-Added full compatability with files out of external folders.")
+    print("-A function in the code was relocated.")
+    print("-Most commands got new phrases!")
 
 # Defines the ls command.
 def doLs1():
@@ -36,47 +36,50 @@ def doLs1():
         if os.path.isfile(os.path.join(file)):
             yield file
 
+# Runs the ls command when called. 
+def doLs2():
+    print("---------Name---------")
+    for file in doLs1():
+        print("|--"+file+"--|")
+    doStartup()  
+
 # Defines the ta command.
 def doTa():
-    print("Please select file to append:")
-    i = input(">")
-    print("Please write what to append:")
+    print("Please select the file to append and use it's path:")
     i = input(">")
     with open(i, "a") as a:
+        print("Please write what to append:")
+        i = input(">")
         a.write(i)
+        print("Operation succesful.")
     doStartup()
 
 # Defnes the tw command.
 def doTw():
-    print("Please select file:")
+    print("Please select file and path:")
     i = input(">")
     with open(i, "w") as w:
         print("What do you want to overwrite?")
         i = input(">")
         w.write(i)
+        print("Operation succesful.")
         doStartup()
 
 # defines the cat command.
 def doCat():
-    print("What file do you want to read?")
+    print("What file do you want to read?(Also write it's path!)")
     i = input(">")
     with open(i, "r") as r:
         print("How many characters do you want to read?")
         i = input(">")
         r = r.read(int(i))
         print(r)
+        print("Operation succesful.")
         doStartup()
-
-# Runs the ls command when called. 
-def doLs2():
-    print("---------Name---------")
-    for file in doLs1():
-        print("|--"+file+"--|")
-    doStartup()    
 
 # Defines the mk command.
 def doMk():
-    print("Please enter the name of the file:")
+    print("Please enter the name of the file and it's path:")
     i = input(">")
     with open(str(i), "x"):
         print("Operation succesful.")
@@ -96,7 +99,7 @@ def doMkdir():
 
 # Defines the rm function.     
 def doRm():
-    print("What file do you want removed(wiped off the planet)?")
+    print("What file do you want removed(wiped off the planet)[Also specify the path.]?")
     i = input(">")
     if os.path.exists(i):
         os.remove(i)
@@ -108,7 +111,7 @@ def doRm():
 
 # Defines the rmdir funcion.
 def doRmdire():
-    print("What empty directory you want to remove?")
+    print("What empty directory you want to remove?[Also specify it's path.]")
     i = input(">")
     os.rmdir(i)
     print("Directory removed.")
