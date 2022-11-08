@@ -1,76 +1,105 @@
 import os
 from cryptography.fernet import Fernet
+import shutil
 
 # Prints the introduction.
-print("Welcome to Python File Manager 0.5!!")
+print("Welcome to Python File Manager 0.6!!")
 print("Type 'help' for help.")
 print("Do 'p' for patch notes.")
-print("Version splash: Why not encrypt your files?")
+print("Version splash: Echo command saves the environment!")
+
 
 # Defines the help command.
-def doHelp():
+def do__h_e_l_p__command():
     print("Welcome to help command!")
     print("Available commands:")
     print("[p] List new patch notes.")
+    print("[echo] Print on the screen something of your choice.")
     print("[ls] List the c of the current directory.")
     print("[ta] Add text to an existing text file.")
     print("[tw] Overwrite an existing text file.")
     print("[cat] Shows the c of a text file.")
     print("[mk] Create a file.")
     print("[mkdir] Create a directory.")
+    print("[mv] Move a file from one place to another.")
+    print("[cp] Copy a file.")
     print("[rm] Remove a file.")
-    print("[rmdire] Remove a empty directory.")
+    print("[rmdir] Remove a empty directory.")
     print("[ec] Encrypt a file of your choice.")
     print("[dc] Decrypt a encrypted file.")
     print("[exit] Exit the program.")
-    doStartup()
+    start()
+
 
 # Defines the p command.
-def doP():
+def do_patch_notes():
     print("Welcome to PFM patch notes!")
-    print("Version: 0.5")
-    print("0.5 patch notes:")
-    print("-The encrypt command was added.")
-    print("-The decrypt command was added.")
-    print("-The version splash was added.")
+    print("Version: 0.6")
+    print("0.6 patch notes:")
+    print("-The 'mv' command was added.")
+    print("-The 'cp' command is out now!")
+    print("-The 'echo' command was added.")
+    print("-The 'rmdire' command was renamed with 'rmdir'.")
+    print("-Some functions from the code were renamed to meet python standards.")
+
+
+# Defines the echo command.
+def do_echo():
+    print("What do you want to print on the screen?")
+    i = input(">")
+    p_thing = i
+    print("What data type is your print thing?")
+    print("[str] A string(text)")
+    print("[int] An int(number)")
+    i = input(">")
+    ptype = i
+    if ptype == "str":
+        print(str(p_thing))
+    if ptype == "int":
+        print(int(p_thing))
+
 
 # Defines the ls command.
-def doLs1():
+def do_list_1():
     for file in os.listdir():
         if os.path.isfile(os.path.join(file)):
             yield file
 
+
 # Runs the ls command when called. 
-def doLs2():
+def do_list_2():
     print("---------Name---------")
-    for file in doLs1():
+    for file in do_list_1():
         print("|--"+file+"--|")
-    doStartup()  
+    start()
+
 
 # Defines the ta command.
-def doTa():
+def do_text_append():
     print("Please select the file to append and use it's path:")
     i = input(">")
     with open(i, "a") as a:
         print("Please write what to append:")
         i = input(">")
         a.write(i)
-        print("Operation succesful.")
-    doStartup()
+        print("Operation successful.")
+    start()
 
-# Defnes the tw command.
-def doTw():
+
+# Defines the tw command.
+def do_text_write():
     print("Please select file and path:")
     i = input(">")
     with open(i, "w") as w:
         print("What do you want to overwrite?")
         i = input(">")
         w.write(i)
-        print("Operation succesful.")
-        doStartup()
+        print("Operation successful.")
+        start()
+
 
 # defines the cat command.
-def doCat():
+def do_cat():
     print("What file do you want to read?(Also write its path!)")
     i = input(">")
     with open(i, "r") as r:
@@ -78,19 +107,21 @@ def doCat():
         i = input(">")
         r = r.read(int(i))
         print(r)
-        print("Operation succesful.")
-        doStartup()
+        print("Operation successful.")
+        start()
+
 
 # Defines the mk command.
-def doMk():
+def do_mk():
     print("Please enter the name of the file and its path:")
     i = input(">")
     with open(str(i), "x"):
-        print("Operation succesful.")
-    doStartup()    
+        print("Operation successful.")
+    start()
+
 
 # Defines the mkdir command.
-def doMkdir():
+def do_mkdir():
     print("Please place a valid directory name:")
     i = input(">")
     print("Please type the parent's folder path:")
@@ -98,11 +129,35 @@ def doMkdir():
     mode = 0o666
     path = os.path.join(parent_path, i)
     os.mkdir(i, mode)
-    print("Operation succesful.")
-    doStartup()
+    print("Operation successful.")
+    start()
+
+
+# Defines the mv command.
+def move():
+    print("What is the file that you want to move( + path )?")
+    ol = input(">")
+    print("What is the new path( + new_name ) of the new file?")
+    nl = input(">")
+    shutil.copy(ol, nl)
+    os.remove(ol)
+    print("File removed.")
+    start()
+
+
+# Defines the cp command.
+def copy():
+    print("What is the file that you want to move( + path )?")
+    ol = input(">")
+    print("What is the new path( + new_name ) of the new file?")
+    nl = input(">")
+    shutil.copy(ol, nl)
+    print("File copied.")
+    start()
+
 
 # Defines the rm function.     
-def doRm():
+def do_rm():
     print("What file do you want removed(wiped off the planet)[Also specify the path.]?")
     i = input(">")
     if os.path.exists(i):
@@ -110,19 +165,21 @@ def doRm():
         print("File removed.")
     else:
         print("The file does not exist.")
-        doRm()
-    doStartup()
+        do_rm()
+    start()
+
 
 # Defines the rmdir funcion.
-def doRmdire():
+def do_rmdir():
     print("What empty directory you want to remove?[Also specify it's path.]")
     i = input(">")
     os.rmdir(i)
     print("Directory removed.")
-    doStartup()
+    start()
+
 
 # Defines the ec command.
-def doEc():
+def encrypt():
     print("What file do you want encrypted?(Also specify the path.)")
     i = input(">")
     file = i
@@ -138,15 +195,16 @@ def doEc():
     ce = Fernet(key).encrypt(c)
     with open(file, "wb") as w:
         w.write(ce)
-    print("File encrypted succesfully.")
-    doStartup()
+    print("File encrypted successfully.")
+    start()
     
     # c_e = Fernet(password).encrypt(c)
     # with open(file, "wb") as wb:
     #     wb.write(c_e)
 
+
 # Defines the dc command.
-def doDc():
+def decrypt():
     print("What file do you want decrypted?[Specify the path!]")
     i = input(">")
     file = i
@@ -163,44 +221,52 @@ def doDc():
         print("File decrypted.")
     else:
         print("--WRONG KEY--")
-        print("The whole command was rerunned.")
+        print("The whole command was ran again.")
         print("Next time enter the correct key!")
-        doDc()
+        decrypt()
     if os.path.exists("thekey.key"):
         os.remove("thekey.key")
-    doStartup()
+    start()
 
-# Defines the startup funcion.
-def doStartup():
+
+# Defines the startup function.
+def start():
     i = input(">")
     if i == "p":
-        doP()
+        do_patch_notes()
+    if i == "echo":
+        do_echo()
     if i == "ls":
-        doLs2()
+        do_list_2()
     if i == "ta":
-        doTa()
+        do_text_append()
     if i == "tw":
-        doTw()
+        do_text_write()
     if i == "cat":
-        doCat()
+        do_cat()
     if i == "mk":
-        doMk()
+        do_mk()
     if i == "mkdir":
-        doMkdir()
+        do_mkdir()
+    if i == "mv":
+        move()
+    if i == "cp":
+        copy()
     if i == "rm":
-        doRm()
-    if i == "rmdire":
-        doRmdire()
+        do_rm()
+    if i == "rmdir":
+        do_rmdir()
     if i == "ec":
-        doEc()
+        encrypt()
     if i == "dc":
-        doDc()
+        decrypt()
     if i == "help":
-        doHelp()
+        do__h_e_l_p__command()
     if i == "exit":
         print("Thank you for using PFM!")
         exit()    
-    doStartup()
+    start()
+
 
 # Starts the program.
-doStartup()
+start()
