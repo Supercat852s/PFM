@@ -3,7 +3,7 @@ from cryptography.fernet import Fernet
 import shutil
 
 # Prints the introduction.
-print("Welcome to Python File Manager 0.6!!")
+print("Welcome to Python File Manager 0.6.1!!")
 print("Type 'help' for help.")
 print("Do 'p' for patch notes.")
 print("Version splash: Echo command saves the environment!")
@@ -34,29 +34,16 @@ def do__h_e_l_p__command():
 # Defines the p command.
 def do_patch_notes():
     print("Welcome to PFM patch notes!")
-    print("Version: 0.6")
-    print("0.6 patch notes:")
-    print("-The 'mv' command was added.")
-    print("-The 'cp' command is out now!")
-    print("-The 'echo' command was added.")
-    print("-The 'rmdire' command was renamed with 'rmdir'.")
-    print("-Some functions from the code were renamed to meet python standards.")
+    print("Version: 0.6.1")
+    print("0.6.1 patch notes:")
+    print("-Removed support for int data types in the 'echo' command.")
 
 
 # Defines the echo command.
 def do_echo():
     print("What do you want to print on the screen?")
     i = input(">")
-    p_thing = i
-    print("What data type is your print thing?")
-    print("[str] A string(text)")
-    print("[int] An int(number)")
-    i = input(">")
-    ptype = i
-    if ptype == "str":
-        print(str(p_thing))
-    if ptype == "int":
-        print(int(p_thing))
+    print(i)
 
 
 # Defines the ls command.
