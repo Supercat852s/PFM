@@ -7,7 +7,7 @@ print("Welcome to Python File Manager 0.7!!")
 print("See https://github.com/Supercat852s/PFM/tree/main for seeing the code.")
 print("Type 'help' for help.")
 print("Do 'p' for patch notes.")
-print("Version splash: Echo command saves the environment!")
+print("Version splash: RENAME THE RENAME!")
 
 
 # Defines the help command.
