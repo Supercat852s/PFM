@@ -4,7 +4,7 @@ from cryptography.fernet import Fernet
 
 # Prints the introduction.
 print("Welcome to Python File Manager 0.7!!")
-print("See https://github.com/Supercat852s/PFM/tree/main for seeing the code.")
+print("Visit https://github.com/Supercat852s/PFM/tree/main to see the code.")
 print("Type 'help' for help.")
 print("Do 'p' for patch notes.")
 print("Version splash: RENAME THE RENAME!")
@@ -246,6 +246,8 @@ def start():
         do_mk()
     if i == "mkdir":
         do_mkdir()
+    if i == "rn":
+        rename()
     if i == "mv":
         move()
     if i == "cp":
