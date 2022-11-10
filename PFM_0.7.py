@@ -1,9 +1,10 @@
 import os
-from cryptography.fernet import Fernet
 import shutil
+from cryptography.fernet import Fernet
 
 # Prints the introduction.
-print("Welcome to Python File Manager 0.6!!")
+print("Welcome to Python File Manager 0.7!!")
+print("See https://github.com/Supercat852s/PFM/tree/main for seeing the code.")
 print("Type 'help' for help.")
 print("Do 'p' for patch notes.")
 print("Version splash: Echo command saves the environment!")
@@ -21,6 +22,7 @@ def do__h_e_l_p__command():
     print("[cat] Shows the c of a text file.")
     print("[mk] Create a file.")
     print("[mkdir] Create a directory.")
+    print("[rn] Rename a file.")
     print("[mv] Move a file from one place to another.")
     print("[cp] Copy a file.")
     print("[rm] Remove a file.")
@@ -34,29 +36,16 @@ def do__h_e_l_p__command():
 # Defines the p command.
 def do_patch_notes():
     print("Welcome to PFM patch notes!")
-    print("Version: 0.6")
-    print("0.6 patch notes:")
-    print("-The 'mv' command was added.")
-    print("-The 'cp' command is out now!")
-    print("-The 'echo' command was added.")
-    print("-The 'rmdire' command was renamed with 'rmdir'.")
-    print("-Some functions from the code were renamed to meet python standards.")
+    print("Version: 0.7")
+    print("0.7 patch notes:")
+    print("-'rn' command added!")
 
 
 # Defines the echo command.
 def do_echo():
     print("What do you want to print on the screen?")
     i = input(">")
-    p_thing = i
-    print("What data type is your print thing?")
-    print("[str] A string(text)")
-    print("[int] An int(number)")
-    i = input(">")
-    ptype = i
-    if ptype == "str":
-        print(str(p_thing))
-    if ptype == "int":
-        print(int(p_thing))
+    print(i)
 
 
 # Defines the ls command.
@@ -133,6 +122,15 @@ def do_mkdir():
     start()
 
 
+# Defines the rn command
+def rename():
+    print("Please write what file to rename [and it's path!].")
+    on = input(">")
+    print("What is the new name for the file?")
+    nn = input(">")
+    os.rename(on, nn)
+
+
 # Defines the mv command.
 def move():
     print("What is the file that you want to move( + path )?")
@@ -169,7 +167,7 @@ def do_rm():
     start()
 
 
-# Defines the rmdir funcion.
+# Defines the rmdir function.
 def do_rmdir():
     print("What empty directory you want to remove?[Also specify it's path.]")
     i = input(">")
